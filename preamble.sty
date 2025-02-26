@@ -1,0 +1,122 @@
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage{graphicx} % Required for including images
+\usepackage{booktabs} % Required for better horizontal rules in tables
+\usepackage{listings} % Required for insertion of code
+\usepackage{enumerate} % To modify the enumerate environment
+\usepackage{physics} % Several useful commands
+\usepackage{cancel} % Cancel symbol
+\usepackage{esint} % Integral symbols
+\usepackage{siunitx} % Writing units
+\usepackage{geometry}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{setspace} % Font spacing 
+
+% Phi
+\renewcommand{\phi}{\varphi}
+
+% Blackboard bold symbols
+\newcommand{\C}{\mathbb{C}}			% fancy C
+\newcommand{\R}{\mathbb{R}}			% fancy R
+\newcommand{\Q}{\mathbb{Q}}			% fancy Q
+\newcommand{\Z}{\mathbb{Z}}			% fancy Z
+\newcommand{\N}{\mathbb{N}}			% fancy N
+\newcommand{\F}{\mathbb F}          % fancy F
+
+% Function commands
+\newcommand{\dom}{\mathrm{Dom}}
+\newcommand{\ran}{\mathrm{Rng}}
+\newcommand{\inject}{\overset{1-1}{\to}}
+\newcommand{\surject}{\underset{\text{onto}}{\to}}
+\newcommand{\biject}{\underset{\text{onto}}{\overset{1-1}{\to}}}
+\newcommand{\id}{\operatorname{id}}
+
+% General symbol commands
+\newcommand{\from}{\leftarrow}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+% \newcommand{\qed}{\hfill$\square$}
+
+% vector operations 
+\newcommand{\crossprod}[6]{\vmqty{\xhat & \yhat & \zhat \\ #1 & #2 & #3 \\ #4 & #5 & #6}}
+\newcommand{\curlmat}[3]{\vmqty{\xhat & \yhat & \zhat \\ \partial/\partial x & \partial/\partial y & \partial/\partial z \\ #1 & #2 & #3}}
+\newcommand{\Cdot}{\boldsymbol{\cdot}}
+
+% Vector formatting
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\renewcommand{\b}[1]{\mathbf{#1}}
+\renewcommand{\c}{\times}
+\newcommand{\bsm}[1]{\boldsymbol{#1}}
+\newcommand{\xhat}{\mbf{\hat{x}}}
+\newcommand{\yhat}{\mbf{\hat{y}}}
+\newcommand{\zhat}{\mbf{\hat{z}}}
+\newcommand{\rhat}{\mbf{\hat{r}}}
+\newcommand{\phihat}{\bsm{\hat{\phi}}}
+
+% Linear algebra
+\newcommand{\spn}{\operatorname{span}}
+\newcommand{\nul}{\operatorname{null}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\matr}{\mcl M}
+\newcommand{\lmap}{\mcl{L}}
+\newcommand{\amat}[3]{\pmat{#1_{1,1} & \cdots & #1_{1,#3} \\
+                 \vdots & \ddots & \vdots \\
+                 #1_{#2,1} & \cdots & #1_{#2,#2}}}
+\newcommand{\fmat}[1]{\pmat{#1 & \cdots & #1 \\ \vdots & \ddots & \vdots \\ #1 & \ddots &   #1}}
+\newcommand{\crank}{\operatorname{column} \operatorname{rank}}
+\newcommand{\rrank}{\operatorname{row} \operatorname{rank}}
+
+\newcommand{\bbar}[1]{\overline{#1}}
+% Theorems
+% \newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{conv}{Convention}
+\newtheorem{rem}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+% \newtheorem*{pf}{Proof}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+
+\declaretheoremstyle[
+  headfont=\bfseries,
+  bodyfont=\itshape,
+]{myplain}
+\declaretheoremstyle[
+  headfont=\bfseries,
+  bodyfont=\normalfont,
+]{mydefinition}
+\declaretheoremstyle[
+  headfont=\itshape,
+  bodyfont=\normalfont,
+]{myremark}
+
+\declaretheorem[
+  style=myplain,
+  name=Theorem,
+]{thm}
+\declaretheorem[
+    style=mydefinition,
+    name=Definition,
+]{dfn}
+\declaretheorem[
+  style=myremark,
+  unnumbered,
+  name=Proof,
+]{pf}
+\declaretheorem[
+  style=myremark,
+  unnumbered,
+  name=Examples,
+]{exs}
+\declaretheorem[
+  style=myremark,
+  unnumbered,
+  name=Example,
+]{ex}

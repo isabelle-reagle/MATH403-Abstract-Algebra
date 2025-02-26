@@ -1,0 +1,819 @@
+\documentclass[10pt, oneside]{article} 
+\usepackage{preamble}
+
+\geometry{tmargin=.75in, bmargin=.75in, lmargin=.75in, rmargin = .75in}  
+
+
+\title{MATH403}
+\author{Isabelle Reagle}
+\date{Spring 2025}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\vspace{.25in}
+
+\section{Basic Notions}
+% \subsection{Set Theory and Functions}
+% Basic familiarity with the notions of set theory is assumed, although we will list some useful properties of sets that will prove useful.
+
+% The distributive properties: let $W,Y,Z$ be sets. Then,
+% \begin{enumerate}
+%     \item $W\cup(Y\cap Z) = (W\cup Y)\cap(W\cup Z)$.
+%     \item $W\cap(Y\cup Z) = (W\cap Y)\cup(W\cap Z)$
+% \end{enumerate} 
+% Let $f: A\to B$ be a function. We may also write $a\mapsto f(a)$. When defining a function, it is important to check that it is well-defined; that is, each input maps to one and only one output. For instance, if we define a function $f: \Q \to \{0,1\}$ with
+% \[ f(a/b) = a \]
+% it is not well-defined, because there are multiple ways to represent the same rational number with a different numerator; consider $2/3$ and $4/6$, for instance.
+
+% We define a function $g: B\to A$ as a \textbf{left inverse} of $f$ iff $f\circ g = \id_B$ and a \textbf{right inverse} of $f$ iff $g\circ f = \id_A$. We call $g$ an \textbf{inverse} if it is both a left-inverse and a right-inverse. A useful theorem follows.
+% \begin{thm}
+%     Let $f: A\to B$. Then,
+%     \begin{enumerate}
+%         \item $f$ is injective iff $f$ has a left inverse.
+%         \item $f$ is surjective iff $f$ has a right inverse.
+%         \item $f$ is bijective iff $f$ has an inverse.
+%         \item If $A$ and $B$ are finite sets with the same number of elements, $f$ is bijective iff $f$ is injective iff $f$ is surjective.
+%     \end{enumerate}
+% \end{thm}
+% \begin{pf}
+%     Omitted.
+% \end{pf}
+% We define a \textbf{permutation} of a set $A$ as a bijection $A\to A$.
+
+% For $A\subseteq B$ and $f: B\to C$, we denote the \textbf{restriction} of $f$ to $A$ with $f|_A$. If $A\subseteq B$ and $g: A\to C$ satisfies $f|_A = g$, then we call $f$ an \textbf{extension} of $g$ to $B$ (such extensions are certainly not unique). 
+\subsection{Equivalence Relations}
+\dfn{
+Let $A$ be a nonempty set. We define a \textbf{binary relation} on $A$ as a subset of $A\times A$. 
+
+For a binary relation $\sim$ on a set $A$, we call $\sim$ an \textbf{equivalence relation} on $A$ if
+\begin{enumerate}
+    \item $\sim$ is reflexive: $a\sim a$ for all $a\in A$.
+    \item $\sim$ is symmetric: $a\sim b \implies b\sim a$ for all $a,b\in A$.
+    \item $\sim$ is transitive: $(a\sim b$ and $b\sim c) \implies a\sim c$ for all $a,b,c\in A$.
+\end{enumerate}
+}
+\dfn{
+For an equivalence class $\sim$ on $A$, we define the \textbf{equivalence class} of any $a\in A$ as 
+\[ [a] = \{x\in A: x\sim a\} \]
+Elements of $[a]$ are said to be \textbf{equivalent} to $a$, and any element of $[a]$ is said to be \textbf{representative} of $[a]$.
+}
+\dfn{
+Let $A$ be a nonempty set. We define a \textbf{partition} of $A$ as some collection $\{A_i\}_{i\in I}$ of nonempty subsets of $A$ such that
+\begin{enumerate}
+    \item $A = \bigcup_{i\in I} A_i$, and
+    \item $A_i\cap A_j = \emptyset$ for all $i,j\in I$ with $i\ne j$.
+\end{enumerate}
+}
+\thm{ Let $A$ be a nonempty set. Then, 
+\begin{enumerate}
+    \item if $\sim$ defines an equivalence relation on $A$, then the set of equivalence classes of $\sim$ form a partition of $A$.
+    \item If $\{A_i\}_{i\in I}$ is a partition of $A$ then there is an equivalence relation on $A$ whose equivalence classes are precisely the sets $A_i$.
+\end{enumerate} }
+\pf{ Omitted.}
+\subsection{Properties of the Integers}
+The following properties of the integers will prove useful.
+\begin{enumerate}
+    \item (Well Ordering of $\Z$) If $A\subseteq\Z^+$ is nonempty, there is some $m\in A$ such that $m\le a$ for all $m\in A$ ($m$ is called a \textbf{minimal element} of $A$).
+    \item For $a,b\in\Z$ with $a\ne 0$, we say $a|b$ ($a$ divides $b$) if there exists $c\in \Z$ such that $b=ac$. The following properties are also satisfied.
+    \begin{enumerate}
+        \item For all $a,b,c\in\Z$, if $a|b$, then $a|bc$.
+        \item For all $a,b,c\in\Z$, if $a|b$ and $a|c$, then $a|(b+c)$.
+    \end{enumerate}
+    \item We denote $\gcd(a,b)$ as simply $(a,b)$. The following properties are satisfied:
+    \begin{enumerate}
+        \item $(a,b)|a$ and $(a,b)|b$.
+        \item If $e|a$ and $e|b$, then $e|(a,b)$.
+        \item There exist $x,y\in\Z$ with $ax+by = (a,b)$ (note that this combination is not unique).
+    \end{enumerate}
+    \item If $\operatorname{lcm}(a,b) = d$, then the following properties are satisfied.
+    \begin{enumerate}
+        \item $a|\operatorname{lcm}(a,b)$ and $b|\operatorname{lcm}(a,b)$. 
+        \item If $a|e$ and $b|e$, then $\operatorname{lcm}(a,b)|e$.
+        \item $\gcd(a,b)\operatorname{lcm}(a,b) = ab$.  
+    \end{enumerate}
+    \item Knowledge of the Division Algorithm and Euclidean algorithm is assumed. 
+    \item An element $p\in\Z^+$ is called \textbf{prime} if $p>1$ and the only positive divisors of $p$ are $1$ and $p$ itself. Primes satisfy the property that for any $a,b\in\Z$, if $p|ab$, then $p|a$ or $p|b$.
+    \item The \textbf{Fundamental Theorem of Arithmetic} states that for any $n\in\Z$ with $n>1$, then $n$ can be factored uniquely (up to the ordering) into the product of primes. That is, there are distinct primes $p_1, \dots, p_s$ and $\alpha_1,\dots, \alpha_s\in \Z^+$ with
+    \[ n = p_1^{\alpha_1}\cdots p_s^{\alpha_s}\]
+    \item For $a,b\in\Z^+$, if we write $a$ and $b$ as products of the same primes:
+    \[ a = p_1^{\alpha_1} \cdots p_s^{\alpha_s},\quad b= p_1^{\beta_1}\cdots p_s^{\beta_s} \]
+    where $\alpha_j$ and $\beta_j$ are allowed to be zero (to permit the usage of the same primes), then
+    \[ (a,b) = p_1^{\min(\alpha_1,\beta_1)}\cdots p_s^{\min(\alpha_s,\beta_s)}\]
+    \item The Euler $\phi$ function is defined as follows: for $n\in\Z^+$ let $\phi(n)$ be the number of positive integers $a\le n$ with $(a,n)=1$. We have the general formula
+    \[ \phi(p^a) = p^{a-1}(p-1) \]
+    for any prime $p$. The $\phi$ function is also \textbf{multiplicative}--that is, when $(a,b)=1$,
+    \[ \phi(ab) = \phi(a)\phi(b)\]
+    These properties can be combined with the fundamental theorem of arithmetic to produce a general formula for $\phi(a)$; if $a = p_1^{\alpha_1}\cdots p_s^{\alpha_s}$ is the prime factorization of $a$, then
+    \begin{align*}
+        \phi(a) &= \phi(p_1^{\alpha_1}\cdots p_s^{\alpha_s}) \\
+        &= \phi(p_1^{\alpha_1})\cdots\phi(p_s^{\alpha_s}) \\
+        &= (p_1-1)p_1^{\alpha_1-1}\cdots (p_s-1)p_s^{\alpha_s-1}
+    \end{align*}
+\end{enumerate}
+\subsection{The Integers Modulo n}
+Fix $n\in\Z^+$. Define a relation $\sim$ on $\Z$ with
+\[ a\sim b \iff n|(b-a)\]
+It can be easily verified that $\sim$ is an equivalence relation:
+\begin{enumerate}
+    \item (Reflexivity) Let $a\in\Z$. Then, $a-a = 0$ so $n|(a-a)$.
+    \item (Symmetry) Let $a,b\in \Z$ and let $a\sim b$. So $n|(b-a)$. $(-(b-a)) = a-b$ so $n|(a-b)$. 
+    \item (Transitivity) Let $a,b,c\in \Z$ and suppose $a\sim b$ and $b\sim c$. So $n|(b-a)$ and $n|(b-c)$. $((b-a)-(b-c)) = c-a$ so $n|(c-a)$.
+\end{enumerate}
+When $a\sim b$, we write $a\equiv b\pmod{n}$, which is read ``$a$ is congruent to $b$, mod $n$." We call the equivalence classes $[a]$ the \textbf{congruence class} or \textbf{residue class} of $a$ mod $n$. These equivalence classes consist of the integers which differ from $a$ by a multiple of $n$:
+\[ [a] = \{a + kn: k\in\Z\}\]
+There are $n$ distinct equivalence classes:
+\[ \bbar 0, \bbar 1, \dots, \bbar{n-1} \]
+The set of equivalence classes under $\sim$ is denoted $\Z/n\Z$ and it is referred to as ``the integers modulo $n$." We can define addition and multiplication on $\Z/n\Z$ as follows:
+\[ \bbar a + \bbar b = \bbar{a+b} \quad\text{and}\quad \bbar a \cdot \bbar b = \bbar{ab}\]
+We must check that these are well-defined. 
+\thm{ 
+Fix some $n\in\Z^+$ and let $a_1,a_2,b_1,b_2\in \Z$ be such that in $\Z/n\Z$, $\bbar a_1 = \bbar b_1$ and $\bbar a_2 = \bbar b_2$. Then, 
+\[ \bbar{a_1 + a_2} = \bbar{b_1+b_2} \quad\text{ and }\quad \bbar{a_1a_2} = \bbar{b_1b_2}. \]
+}
+\pf{
+Suppose $a_1\equiv b_1\pmod{n}$ and $a_2\equiv b_2\pmod{n}$. Then, $n|(a_1-b_1)$ so $a_1-b_1=sn$ for some $s\in\Z$. Rearranging gives $a_1 = sn + b_1$. Similarly, $a_2 = tn + b_2$ for some $t\in\Z$. So
+\[ a_1 + a_2 = (sn+b_1) + (tn+b_2) = (s+t)n + (b_1+b_2)\]
+So $n|((a_1+a_2)-(b_1+b_2))$. So $a_1+a_2\equiv b_1+b_2\pmod{n}$, as desired. 
+
+For multiplication, 
+\begin{align*}
+    a_1a_2 &= (sn+b_1)(tn+b_2) \\
+    &= stn^2 + snb_2 + tnb_1 + b_1b_2 \\
+    &= (stn + sb_2 + tb_1)n + b_1b_2
+\end{align*}
+So $n|(a_1a_2-b_1b_2)$. So $a_1a_2\equiv b_1b_2\pmod{n}$.\qed
+}
+
+We sometimes denote the elements of $\Z/n\Z$ as simply $\{0, 1, \dots, n-1\}$ when it is understood from the context that we are really referring to the equivalence classes. When using this notation, we treat addition and multiplication as being modulo $n$.
+
+An important subset of $\Z/n\Z$ is the set of elements which have a multiplicative inverse in $\Z/n\Z$. We denote this set $(\Z/n\Z)^\times$.
+\thm{
+$(\Z/n\Z)^\times = \{\bar a \in \Z/n\Z : (a, n) = 1\}$.
+}
+\pf{ 
+Omitted.
+}
+
+For any $a\in\Z$ with $(a,n)=1$, the Euclidean algorithm gives steps to find $x,y\in \Z$ satisfying $ax+ny=1$. This may be equivalently stated $ax = -ny + 1$; therefore, $ax\equiv 1\pmod{n}$. So $\bbar a$ and $\bbar x$ are multiplicative inverses in $\Z/n\Z$.
+
+\section{Introduction to Groups}
+\subsection{Basic Axioms}
+\dfn{
+A binary operation $*$ on a set $G$ is a function $*: G\times G \to G$. We typically write $a*b$ instead of $*(a,b)$.
+}
+\dfn{
+A binary operation $*$ on a set $G$ is \textbf{associative} if for all $a,b,c\in G$, we have $a*(b*c) = (a*b)*c$.
+}
+\dfn{
+If $*$ is a a binary operation on a set $G$, we say elements $a$ and $b$ of $G$ \textbf{commute} if $a*b=b*a$. We say $*$ is commutative (or $G$ is commutative) if for all $a,b\in G$, $a*b=b*a$.
+}
+\dfn{
+Suppose $*$ is a binary operation on $G$ and $H\subseteq G$. If the restriction of $*$ to $H$ is a binary operation on $H$ (i.e. $\forall a,b\in H, a*b\in H$), then we say $H$ is \textbf{closed} under $*$. 
+
+Note that if $*$ is commutative on $G$ and $H$ is closed under $*$, then $*$ is automatically commutative on $H$. A similar idea holds for associativity.
+}
+\dfn{
+    A \textbf{group} is an ordered pair $(G, *)$ where $G$ is a set and $*$ is a binary operation on $G$ satisfying the following axioms:
+    \begin{enumerate}
+        \item $\forall a,b,c\in G$, $(a*b)*c = a*(b*c)$.
+        \item $\exists e    \in G$ s.t. $e*a=a*e=a,\forall a\in G$.
+        \item $\forall a\in G, \exists a^{-1}\in G$ s.t. $a^{-1}*a=a*a^{-1}=e$.
+    \end{enumerate}
+}
+\exs{Some examples and non-examples of Groups.
+\begin{enumerate}
+    \item $(\Z,+)$ is a group under addition.
+    \item $(\N,-)$ is not a group since we do not have closure under $-$.
+    \item $(\Z, \times)$ is not a group since most integers (all but $1$, $-1$) have no multiplicative inverse in $\Z$.
+\end{enumerate}
+}
+\dfn{
+Let $(G, *)$ be a group. We say $G$ is \textbf{abelian} (or commutative), if $*$ is commutative on $G$.
+}
+\thm{
+Let $(G,*)$ be a group. Then,
+\begin{enumerate}
+    \item The identity of $G$ is unique.
+    \item For each $a\in G$, the inverse $a^{-1}$ is unique.
+    \item $(a^{-1})^{-1} = a$ for all $a\in G$.
+    \item $(a*b)^{-1} = (b^{-1})*(a^{-1})$ for all $a,b\in G$.
+    \item $\forall a_1, \dots, a_n\in G$, the value of $a_1*\cdots*a_n$ is independent of the placement of the brackets.    
+\end{enumerate}
+}
+\pf{
+Let $(G,*)$ be a group.
+\begin{enumerate}
+    \item Let $e, e'\in G$ be identity elements. Then, $e = e*e' = e'$ where the definition of identity was used twice. So $e=e'$.\qed
+    \item Let $a\in G$. Suppose $b,c\in G$ are both inverses of $a$. Then, 
+    \[ b =b*e = b*(a*c) = (b*a)*c = e*c = c\] \qed
+    \item Let $a\in G$. Denote $b = (a^{-1})^{-1}$. 
+    \begin{align*}
+        b = (a^{-1})^{-1} &\implies b*a^{-1} = e \\
+        &\implies (b*a^{-1})*a = e*a \\
+        &\implies b*(a^{-1}*a) = a \\
+        &\implies b*e = a \implies b=a
+    \end{align*}\qed
+    \item Let $a,b\in G$. Denote $c = (a*b)^{-1}$. By definition, $(a*b)*c = e$. So $a*(b*c) = e$. Then, left-multiplying by $a^{-1}$ on both sides,
+    \begin{alignat*}{3}
+        &\quad\quad\quad &a^{-1}*(a*(b*c)) &= a^{-1}* e \\
+        &\implies &(a^{-1}*a)*(b*c)) &= a^{-1} \\
+        &\implies &e*(b*c)   &= a^{-1} \\
+        &\implies &b*c &= a^{-1}
+    \end{alignat*}
+    Now, left-multiplying by $b^{-1}$ on both sides,
+    \begin{alignat*}{3}
+        &\quad\quad\quad &b^{-1}*(b*c) &= b^{-1}*a^{-1} \\
+        &\implies &(b^{-1}*b)*c &= b^{-1}*a^{-1} \\
+        &\implies &e*c &= b^{-1}*a^{-1} \\
+        &\implies &c&=b^{-1}*a^{-1}
+    \end{alignat*}
+    \qed
+    \item We prove this by induction. When $n=1$, the claim is that $\forall a_1\in G$, the value $a_1$ is independent of the placement of brackets, which is clearly true.
+
+    Assume that the statement $\forall a_1, \dots, a_n\in G$, $a_1* \cdots * a_n$ is independent of brackets holds for some $n\in \N$. Then, let $a_1, \dots, a_n, a_{n+1}\in G$. Consider the following products:
+    \begin{align*}
+        a_1 * (a_2 * \cdots * a_n * a_{n+1}) &\quad (a_1*a_2)*(a_3 * \cdots * a_n*a_{n+1}) \\
+        &\vdots \\
+        (a_1*\cdots * a_{n-1})*(a_{n}*a_{n+1}) &\quad (a_1*\cdots * a_n) * a_{n+1}
+    \end{align*}
+    These $n$ products describe every possible way to split the product $a_1 * \cdots * a_{n+1}$ into exactly two groups of parenthesis. In each case, both of the two groups consist of $n$ or fewer elements, so we can apply the inductive hypothesis to them and say that they are independent of the placement of the parenthesis. So $a_1 * \cdots * a_{n+1}$ is independent of the placement of the parenthesis.
+\end{enumerate}
+}   
+
+We will now omit writing the operation $*$ and just denote $a*b$ as $ab$, unless the context calls for us to be explicit about the operation. 
+
+Since we now know that the order of the parenthesis does not matter, we will denote $x*x*\cdots*x$ (n times) as simply $x^n$. We denote $(x^{-1})^n = x^{-n}$.
+
+Sometimes it is natural to think of a group as being additive (such as $(\Z,+)$, for example). In this case, we adopt the natural notation $x^{-1}\to -x$, $x^n\to nx$, etc. Note that our axioms are exactly identical, it's just a difference in notation.
+
+\thm{
+Let $G$ be a group and let $a,b\in G$. The equations $ax=b$ and $ya=b$ have unique solutions for $x,y\in G$. In particular, the \textbf{cancellation laws} hold in $G$--that is,
+\begin{enumerate}
+    \item If $au=av$, then $u=v$, and
+    \item If $ub=vb$, then $u=v$.
+\end{enumerate}
+}
+\pf{
+We solve $ax=b$ by left-multiplying by $a^{-1}$ on both sides: $a^{-1}ax=a^{-1}b \implies x = a^{-1}b\in G$. Because $a^{-1}$ is unique, $x =a^{-1}b$ is unique as well. Similarly, when $ya=b$, we obtain $y = ba^{-1}$.
+
+If $au=av$, left-multiply by $a^{-1}$ on both sides: $a^{-1}au = a^{-1}av \implies u=v$.
+
+If $ub = vb$, right-multiply by $b^{-1}$ on both sides: $ubb^{-1} = vbb^{-1}\implies u=v$.
+
+\qed
+}
+\thm{ Let $G$ be a group and let $a,b\in G$. Then,
+    \begin{enumerate}
+        \item If $ab=e$, then $b=a^{-1}$.
+        \item If $ab=a$, then $b=e$.
+    \end{enumerate}
+}
+\pf{We could easily solve these by left-multiplying by $a^{-1}$. However, we use the cancellation law.
+\begin{enumerate}
+    \item Assume $ab=e$. So $ab=aa^{-1}$. By the cancellation law, $b=a^{-1}$. 
+    \item Assume $ab=a$. So $ab=ae$. By the cancellation law, $b=e$.
+\end{enumerate}
+}
+\dfn{
+Let $G$ be a group and $x\in G$. We define the \textbf{order} of $x$ as the smallest $n\in\N$ with $x^n = 1$. We denote this number $|x|$. If there is no such $n$, then we say $x$ is of order infinity.
+}
+\exs{Consider the following.
+\begin{enumerate}
+    \item An element of a group has order $1$ iff it is the identity.
+    \item In the additive groups $\Z,\Q,\R,\C$, every nonzero element has infinite order.
+    \item In the additive group $(\Z/9\Z, +)$, the element $7$ has order $9$ since $9\times 7= 63 \equiv 0\pmod{9}$, and none of
+    \[ 1\times 7, \cdots, 8\times 7\]
+    are congruent to $0$, mod $9$.
+    \item In the multiplicative group $(\Z/7\Z)^\times$, the first powers of $2$ are $2^1 = 2$, $2^2 = 4$, $2^3=8$. Since $8\equiv 1\pmod{7}$, but $2$ and $4$ aren't, $2$ has order $3$.
+\end{enumerate}
+}
+\dfn{
+Let $G = \{g_1, \dots, g_n\}$ be a finite group with $g_1=1$. The \textbf{multiplication table} of $G$ is the $n\times n$ grid $M$ whose entries are $M_{ij} = g_ig_j$.
+}
+\ex{The elements of $(\Z/8\Z)^\times$ are $\{1, 3, 5, 7\}$. So the multiplication table of $(\Z/8\Z)^\times$ is 
+\begin{align*}
+    \pmqty{1\times 1 & 1\times 3 & 1\times 5 & 1\times 7 \\
+            3\times 1 & 3\times 3 & 3\times 5 & 3\times 7 \\
+            5\times 1 & 5\times 3 & 5\times 5 & 5\times 7 \\
+            7\times 1 & 7\times 3 & 7\times 5 & 7\times 7
+            } &= \pmqty{1 & 3 & 5 & 7 \\
+                        3 & 9 & 15 & 21 \\
+                        5 & 15 & 25 & 35 \\
+                        7 & 21 & 35 & 49}
+            \equiv \pmqty{1 & 3 & 5 & 7 \\
+                          3 & 1 & 7 & 5 \\
+                          5 & 7 & 1 & 3 \\
+                          7 & 5 & 3 & 1            
+                    }\pmod{8}
+\end{align*}    
+One thing you may notice is that this table is symmetric. In fact, this turns out to be a consequence of the fact that $(\Z/8\Z)^\times$ is abelian. For a group $G = \{g_1, \dots, g_n\}$, $M_{ij} = M_{ji}$ is equivalent to $g_ig_j = g_jg_i$, which is true for all $i,j$ iff $G$ is abelian.
+
+}
+\subsection{Dihedral Groups}
+An important example of a group is the class of groups whose entries are symmetries of geometric objects.
+\dfn{
+Let $n\in\N$, $n\ge 3$, let $D_{2n}$ be set of symmetries of the regular $n$-gon.
+}
+\dfn{
+A symmetry is a rigid motion of an $n$-gon where in the end, it looks the same.
+}
+\ex{
+For $n=4$, we have a square and the possible symmetries are:
+\begin{enumerate}
+    \item Doing nothing.
+    \item $90^\circ$ rotation clockwise.
+    \item $180^\circ$ rotation clockwise.
+    \item $270^\circ$ rotation clockwise.
+    \item Reflection about the $y$ axis.
+    \item Reflection about the $x$ axis.
+    \item Reflection about the line $y=x$.
+    \item Reflection about the line $y=-x$.
+\end{enumerate}
+}
+\dfn{
+Let $D_{2n}$ be a set of symmetries. Let $s,t\in D_{2n}$. We define the operation of \textbf{composition} on $D_{2n}$ as the symmetry $st$ created by applying $t$ and then applying $s$. 
+}
+\thm{
+Under the operation of composition, $D_{2n}$ forms a group for every $n\in\N_{\ge 3}$.
+}
+\pf{
+The identity operation is the operation of doing nothing, which is always a member of $D_{2n}$.
+
+The inverse of some $s\in D_{2n}$ is the symmetry that reverses the effects of $s$. You should be able to convince yourself of the existence of these inverses.
+
+Associativity holds because function composition is generally associative.\qed
+}
+
+We can denote a symmetry by how it permutes the set of vertices $\{1, 2,\dots, n\}$. If $s$ swaps vertex $i$ and $j$, for instance, we call $s$ the permutation of $\{1, 2, \dots, n\}$ sending the $i^\text{th}$ vertex to the $j^\text{th}$ position.
+\thm{
+$D_{2n}$ has $2n$ elements.
+}
+\pf{
+Consider only the behavior of vertex $1$. Given some other vertex $i$, we can send $1$ to $i$ using a symmetry. So there are at least $n$ symmetries.
+
+If we send vertex $1$ to $i$, then vertex $2$ must go to $i+1$ or $i-1$ (where addition is modulo $n$), and there are symmetries that do both of these (for $i+1$, rotate by a certain amount, and for $i-1$, reflect and then rotate). So there must be at least $2n$ symmetries.
+
+But every symmetry is completely determined by where vertices $1$ and $2$ go, which follows from the requirement that the rotation be rigid. So there are exactly $2n$ symmetries. \qed
+}
+
+We now introduce some language to describe these groups, in order to simplify future discussions and permit us to view $D_{2n}$ as an abstract group (somewhat disconnected from its underlying geometry).
+
+Fix a regular $n$-gon at the origin and label the vertices as $1$ to $n$, going clockwise. Let $r$ be the rotation of $2\pi/n$ radians about the origin clockwise and let $s$ be the reflection about the line of symmetry passing through vertex $1$.
+\thm{
+\begin{enumerate} Let $3 \le n\in \N$. Then, with $r, s\in D_{2n}$ as outlined above,
+    \item $1,r ,r^2, \dots, r^{n-1}$ are all distinct, and $r^n=1$.
+    \item $|s|=2$.
+    \item $s\ne r^i$ for any index $i$.
+    \item $sr^i \ne sr^j$ for any $0 \le i,j \le n-1$ with $i\ne j$. Thus,
+    \[ D_{2n} = \{1, r, r^2, \dots, r^{n-1}, s, sr, sr^2, \dots, sr^{n-1}\} \]
+    So each element of $D_{2n}$ can be written uniquely in the form $s^jr^k$ for some $j=0$ or $j=1$, and $0\le k \le r-1$.
+    \item $rs=sr^{-1}$.
+    \item $r^is = sr^{-i}$
+\end{enumerate}
+}
+\pf{ Fix $3\le n\in \N$. Then,
+\begin{enumerate}
+    \item Pay attention to the behavior of index $1$. The symmetry $1\in D_{2n}$ has $1\mapsto 1$. Similarly, the symmetry $r\in D_{2n}$ sends $1\mapsto 2$. Generally, the symmetry $r^i$ for $0 \le i \le n-1$ sends $1 \mapsto i$. So each each $r^i$ is distinct.
+
+    $r^n$ corresponds to one full rotation of the $n$-gon ($n \cdot 2\pi /n = 2\pi$ radians rotation), so it is the identity.
+
+    \item $s^2$ is the symmetry formed by reflecting the $n$-gon and then reflecting it back. We can also see this by applying $s$ twice separately, $1\overset{s}{\mapsto} 1 \overset{s}{\mapsto} 1$ and $2\overset{s}{\mapsto} n\overset{s}{\mapsto}2$. Since the behavior of a symmetry is entirely determined by how it moves $1$ and $2$, $s^2=1$.
+    \item When $i=0$, the symmetry $r^0 = 1$ maps $2\overset{r^0}{\mapsto}2$. But $2\overset{s}{\mapsto}n$. So $s \ne r^0$.
+
+    When $i\ne 0$, the symmetry $r^i$ maps $1\overset{r^i}{\mapsto} i$, but $s$ maps $1\overset{s}{\mapsto}1 \ne i$. So $s \ne r^i$ for any $1\le i \le n-1$.
+
+    Hence $s\ne r^i$ for any $0\le i \le n-1$.
+    \item Suppose $sr^i$ and $sr^j$ are such that $sr^i=sr^j$. Applying the cancellation law for groups, $r^i=r^j$. But by part (1) of this theorem, $r^i=r^j$ only if $i=j$.
+    \item The symmetry $rs$ maps $1$ to $1 \overset{s}{\mapsto} 1 \overset{r}{\mapsto} 2$ and $2 \overset{s}{\mapsto} n \overset{r}{\mapsto} 1$. The symmetry $sr^{-1}$ maps $1$ to $1\overset{r^{-1}}{\mapsto} n \overset{s}{\mapsto} 2$, and $2$ to $2\overset{r^{-1}}{\mapsto} 1 \overset{s}{\mapsto}1$. So the symmetries are equal.
+    \item We apply (5), and induct on $i$. In the base case $i=1$, this reduces exactly to (5).
+
+    Now inductively suppose we have $r^is = sr^{-i}$ for some index $i$. Then, left-multiply by $r$ to obtain $rr^i s = rsr^{-i}$. The LHS becomes $r^{i+1}s$ and the $RHS$ becomes $(rs)r^{-i} = (sr^{-1})r^{-i} = sr^{-(i+1)}$, where the first equality comes from (5). So $r^{i+1}s = sr^{-(i+1)}$, as desired.\qed 
+\end{enumerate}
+}
+
+We can apply these rules to simplify complicated expressions of $r$ and $s$. 
+\ex{
+    Consider the expression $(sr^9)(sr^6)$. We may simplify this using the rules outlined in the previous theorem.
+    \begin{alignat*}{2}
+        (sr^9)(sr^6) &= s(r^9s)r^6 \qquad\qquad&\text{(associativity)} \\
+        &= s(sr^{-9})r^6 &\text{(property 6)} \\
+        &= (s^2)(r^{-9}r^6) &\text{(associativity)} \\
+        &= 1r^{-3} &\text{(property 2)} \\
+        &= r^{-3} = r^9
+    \end{alignat*}
+}
+
+\subsection*{Generators and Relations}
+In the case of the dihedral group $D_{2n}$, we saw that every element could be created just by looking at products of two ``generator" elements. We wish to generalize and formalize this notion. We will return to generators later in much more detail, but a simple introduction will prove useful for the time being.
+
+\dfn{ Let $G$ be a group and $S\subseteq G$ have the property that every element of $G$ can be written as a finite product of elements of $S$ and their inverses. We call such a subset a set of \textbf{generators} of $G$, and we write $G = \< S \>$.
+}
+
+For example, the integer $1$ is a generator of the group $(\Z, +)$ since every integer may be written as the a sum of $1$ and $-1$. We can also see that the set $\{r, s\}$ is a generator of $D_{2n}$, since every element of $D_{2n}$ can be produced as a product of $r$ and $s$.
+
+\dfn{ Any equations in a group $G$ that the generators satisfy are called \textbf{relations} in $G$. }
+
+So in $D_{2n}$ we have the following relations: $r^n=1$, $rs=sr^{-1}$, and $s^2=1$. In $D_{2n}$ we can derive any other relation between elements of the group by starting with only these three.
+
+\dfn{
+Let $G$ be a group generated by some $S\subseteq G$. Let $R_1, \dots, R_m$ be a collection of relations in $G$ (here each $R_i$ is an equation in terms of the elements of $S\cup\{1\}$) such that any relation among the elements of $S$ can be generated by these. We call these generators and relations a \textbf{presentation} of $G$ and write
+\[ G = \< \; \; S \;\;|\;  \; R_1, \; \cdots, \; R_m\>\]
+}   
+
+Thus, one presentation for $D_{2n}$ is given by
+\[ D_{2n} = \< \; \; r, s \; \; | \; \; r^n=1, \; \; s^2=1, \; \; rs=sr^{-1}\>\]
+Generators give a convenient way to concisely describe a group, but there are subtleties to consider. One of these is that in an arbitrary generator, it may be difficult (or even impossible) to tell when two elements of a group are equal. For instance, it can be shown that 
+\[ \< \; \; x_1, y_1 \; \; | \; x_1^2=y_1^2=(x_1y_1)^2 = 1 \> \]
+is a presentation of a group of order $4$, but
+\[ \< \; \; x_2,y_2 \; \; | \; x_2^3=y_2^3 =(x_2y_2)^3 = 1 \> \]
+is a presentation of an infinite group!
+\subsection{Symmetric Groups}
+\dfn{ 
+Let $\Omega$ be a nonempty set and define the set $S_\Omega$ as the set of permutations (bijections) of $\Omega$. Then, $(S_\Omega, \circ)$ is a group with the identity $1$ defined with $1(a)=a$.
+}
+
+We can see that $(S_\Omega, \circ)$ is a group since every $\sigma \in S_{\Omega}$ has an inverse, which is guaranteed since $\sigma$ is bijective. We also have closure, since the composition of bijective functions is bijective. There is also an identity element: the identity function on $\Omega$.
+\dfn{
+When $\Omega = \{1, \dots, n\}$, we call $(S_\Omega, \circ)$ the \textbf{symmetric group of degree n}, and we denote it $S_n$.
+}
+
+\thm{
+$|S_n| = n!$
+}
+\pf{
+Because $\{1, \dots, n\}$ is finite, a function $\sigma: \{1, \dots, n\} \to \{1, \dots, n\}$ is bijective iff it is injective. So the elements of $S_n$ are precisely the injective functions from $\{1, \dots, n\}$ to itself. 
+
+Let $\sigma$ be an injective function. There are $n$ possible values that $\sigma(1)$ may take on; namely the numbers $\{1, \dots, n\}$. Once $\sigma(1)$ has been fixed, $\sigma(2)$ may be anything in $\{1, \dots, n\} \setminus\{\sigma(1)\}$, so there are $n-1$ possible values. In general, $i$ may take on $n-i+1$ values: anything in $\{1, \dots, n\}\setminus\{\sigma(1), \cdots, \sigma(i-1)\}$.
+
+The total number of injective functions is the product of the number of possible outcomes for each $\sigma(i)$. So there are $n(n-1)\cdots(2)(1) = n!$ functions. So $|S_n|=n!$ \qed
+}
+
+We now describe an efficient way to write elements $\sigma$ of $S$.
+\dfn{
+A \textbf{cycle} is a string of integers which represents the element of $S_n$ which cyclically permutes the integers $\{1, \dots, n\}$ (and fixes all other integers). We denote the cycle under which $a_1 \mapsto a_2$, $a_2\mapsto a_3$, \dots, $a_m\mapsto a_1$ as $(a_1\, a_2\, \cdots\, a_m)$.
+}
+
+In general, for each $\sigma\in S_n$, the numbers from $1$ to $n$ will be rearranged and grouped into $k$ disjoint cycles of the form
+\[ (a_1\dots a_{m_1})(a_{m_1+1}\cdots a_{m_2})\cdots(a_{m_{k-1}+1}\cdots a_{m_k})\]
+See the book for a description of the algorithm. 
+
+We can compose elements in $S_n$ by ``following" elements under successive permutations. In general, $S_n$ is not abelian. But we do have commutativity for disjoint cycles.
+\ex{
+    Let $\sigma = (1\;2\;3)\in S_4$ and $\tau = (1\;2)(3\;4)\in S_4$. We compute $\sigma\circ \tau$.
+
+    The element $1$ goes to $\tau(1) = 2$. Then $\sigma(2) =3$. So $(\sigma \circ \tau)(1) = 3$.
+
+    Now we follow $3$. $\tau(3)= 4$ and $\sigma(4)=4$ so $(\sigma\circ\tau)(3)=4$. 
+
+    Now we follow $4$. $\tau(4)=3$ and $\sigma(3)=1$ so $(\sigma\circ\tau)(4)=1$. And we've completed a cycle: $(1 \; 3\;4)$.
+
+    The next cycle starts with $2$, but $2$ is just sent to itself and we omit $1$-cycles. So we're done.
+    \[ \sigma \circ \tau = (1\;3\;4)\]
+}
+
+One key idea is that the representation of $\sigma \in S_n$ is not generally unique. But there is a unique way to write it as a product of disjoint cycles, as we will prove.
+
+To invert some $\sigma \in S_n$ with
+\[ \sigma = (a_1\dots a_{m_1})(a_{m_1+1}\cdots a_{m_2})\cdots(a_{m_{k-1}+1}\cdots a_{m_k}) \]
+you simply reverse each cycle:
+\[ \sigma^{-1} = (a_{m_1} \cdots a_1) (a_{m_2} \cdots a_{m_1+1})\cdots(a_{m_k} \cdots a_{m_{k-1}+1})\]
+\subsection{Matrix Groups}
+\dfn{
+A \textbf{field} $F$ is a set together with two binary operations $+: F\to F$ and $\cdot: F\to F$ such that $(F, +)$ and $(F, \cdot)$ are abelian groups, and the associative law 
+\[ a\cdot(b+c) = a\cdot b + a\cdot c \quad\forall a,b,c\in F\]
+holds.
+}
+\dfn{
+Let $F$ be a field. Define $F^\times = F\setminus\{0\}$. 
+}
+
+All of the theory of vector spaces and transformations over $\R$ transfers, with minimal modifications, to a theory over an arbitrary field.
+\dfn{
+Let $n\in\N$. Define $\operatorname{GL}_n(F)$ as the set of all invertible $n\times n$ matrices with entries in $F$. We call this the \textbf{general linear group} of degree $n$.  
+}
+\thm{
+Fix $n\in\N$ and a field $F$. Then $\operatorname{GL}_n(F)$ is a group under matrix multiplication.
+}
+\pf{
+We have an identity element $I_{n\times n} \in \operatorname{GL}_n(F)$. For any $A\in \operatorname{GL}_n(F)$, $A^{-1}$ is invertible so $A^{-1}\in \operatorname{GL}_n(F)$. The product of two invertible matrices is invertible so for any $A,B\in\operatorname{GL}_n(F)$, $AB\in\operatorname{GL}_n(F)$.\qed
+}
+\subsection{Quaternion Groups}
+\dfn{
+The quaternion group $Q_8 = \{1, -1, i, -i. j, -j, k, -k\}$ has the following multiplication rules:
+\begin{alignat*}{3}
+    1a = a1 &= a \quad \forall a \qquad\qquad 
+    &(-1)(-1) &= 1 \\
+    -1a &= -a \quad\forall a 
+    &i^2=j^2=k^2&=-1 \\
+    ij&= k
+    &jk &= i \\
+    ki &= j 
+    &ji &= -k \\
+    kj &= -i 
+    &ik &= -i
+\end{alignat*}
+}
+
+This defines a non-abelian group of order 8 (checking associativity is annoying, but not particularly difficult)
+\subsection{Homomorphisms and Isomorphisms}
+We start with a question: when do groups ``look the same?" That is, they have the exact same structure. This is the notion of an \textit{isomorphism}. We first define the idea of a \textit{homomorphism} which will be important.
+\dfn{
+Let $(G, *)$ and $(H, \circ)$ be groups. A function $\phi: G\to H$ is called a \textbf{homomorphism} if
+\[ \phi(a*b) = \phi(a)\circ \phi(b) \quad\quad\forall a,b\in G\]
+}
+\dfn{
+Let $(G, *)$ and $(H,\circ)$ be groups. An \textbf{isomorphism} between $G$ and $H$ is a bijective homomorphism between $G$ and $H$. We call $G$ and $H$ \textbf{isomorphic} if there is an isomorphism between them, and we write $G\cong H$.
+}
+
+Given groups $G\cong H$, we can intuitively say that $G$ and $H$ are ``the same," down to a renaming of elements and operations. Many of the properties of $G$ that depend on just its structure will transmit to $H$. For example, if $G$ is abelian, so is $H$.
+\exs{
+Consider the following.
+\begin{enumerate}
+    \item[(a)] For any group $G$, the identity on $G$ is an isomorphism. So $G\cong G$.
+    \item[(b)] For $(\R, +)$ and $(\R_{>0}, \times)$, we can identify an isomorphism $\exp : (\R,+) \to (\R_{>0}, \times)$ with $x \mapsto e^x$.
+
+    To see that this is a homomorphism, note we have $e^{x+y} = e^xe^y$ for any $x,y\in (\R, +)$. The exponential is also certainly a bijection from the reals to the positive reals due to the existence of an inverse $\ln(x)$.
+\end{enumerate}
+}
+\thm{
+$\cong$ is an equivalence relation.
+}
+\pf{ Let $G,H,K$ be groups.
+\begin{enumerate}
+    \item[(a)] $G\cong G$ under the identity.
+    \item[(b)] If $G\cong H$, let $\phi: G\to H$ be an isomorphism. So $\psi: H\to G$ exists and is bijective. We must show $\psi$ is a homomorphism. Let $a,b\in H$. Since $\phi$ is bijective,
+    \[ \psi (ab) = \psi(a)\psi(b) \iff \phi(\psi(ab)) = \phi(\psi(a)\psi(b))\]
+    The LHS becomes simply $ab$. The RHS becomes $\phi(\psi(a))\phi(\psi(b))=ab$ since $\phi$ is a homomorphism.
+    \item[(c)] If $G\cong H$ and $H\cong K$, let $\phi: G\to H$ and $\psi: H\to K$ be isomorphisms. Then $\psi \circ \phi: G\to K$ is a bijection (composition of bijections is a bijection). Let $a,b\in H$. Then,
+    \begin{align*}
+        (\phi \circ\psi)(ab) = \phi(\psi(ab)) = \phi(\psi(a)\psi(b)) = \phi(\psi(a))\phi(\psi(b)) = (\psi\circ\phi)(a)(\psi\circ\phi)(b)  
+    \end{align*}
+    So $\psi\circ\phi$ is an isomorphism.
+\end{enumerate}
+}
+\thm{
+Let $G$ and $H$ be groups. A homomorphism $\phi: G\to H$ is an isomorphism iff $\exists$ an inverse homomorphism $\psi: H\to G$.
+}
+\pf{
+Omitted.
+}
+\thm{
+For any finite set $\Omega$ with cardinality $|\Omega| = n$, $S_\Omega \cong S_n$.
+}
+
+\pf{
+Label the elements of $\Omega$ with $\Omega = \{\omega_1, \dots, \omega_n\}$. For each $\sigma\in S_n$, we define $f_\sigma \in S_\Omega$ with
+\[ f_\sigma (\omega_i) = \omega_{\sigma(i)}\]
+I claim the map $\phi: \sigma \mapsto f_\sigma$ is an isomorphism. First we show that $\phi$ is a homomorphism. Let $\sigma, \tau\in S_n$. Let $\omega_i\in S_n$ be arbitrary. Then,
+\begin{align*}
+    (\phi(\sigma \circ\tau))(\omega_i) = f_{\sigma \circ \tau}(\omega_i) = \omega_{(\sigma \circ \tau)(i)} = \omega_{\sigma(\tau(i))} = (\phi(\sigma)\circ\phi(\tau))(\omega_i)
+\end{align*}
+as desired. Now we show $\phi$ is bijective. I claim $\psi: f_\sigma\mapsto \sigma$ is an inverse homomorphism of $\phi$. First we show $\psi$ is a homomorphism. Let $f_\sigma$, $f_\tau \in S_\Omega$. Let $i\in\{1, \dots, n\}$. Then,
+\begin{align*}
+    (\psi(f_\sigma \circ f_\tau))(i) = (\sigma\circ\tau)(i) = (\psi(f_\sigma)\circ \psi(f_\tau))(i)
+\end{align*}
+as desired. Then, for any $f_\sigma \in S_\Omega$ we have
+\begin{align*}
+    (\phi \circ \psi)(f_\sigma) = \phi(\psi(f_\sigma)) = \phi(\sigma) = f_\sigma
+\end{align*}
+and for any $\sigma \in S_n$, we have
+\begin{align*}
+    (\psi\circ\phi)(\sigma) = \psi(\phi(\sigma)) = \psi(f_\sigma) = \sigma 
+\end{align*}
+as desired.\qed
+}
+
+This is in fact true for infinite sets too; for any $\Omega, \Omega'$ with $|\Omega| = |\Omega'|$, $S_\Omega \cong S_{\Omega'}$. But this proof is hard, so we just do the finite case. 
+
+A key question we may ask is: ``what properties of a group $G$ determines its isomorphism class?"
+\exs{
+We aren't proving these now, but we present them as motivation.
+\begin{enumerate}
+    \item[(a)] For any prime $p$, any group $G$ of size $p$ is isomorphic to $(\Z/p\Z, +)$.
+    \item[(b)] Any non-abelian group of size 6 is isomorphic to $S_3$.
+\end{enumerate}
+}
+We may also be interested in proving that two groups are \textit{not} isomorphic. A few common methods are:
+\begin{enumerate}
+    \item[(a)] Show $|G|\ne |H|$.
+    \item[(b)] Show $G$ is abelian and $H$ is not.
+    \item[(c)] Show $G$ and $H$ have different numbers of elements of some given order $d$.
+\end{enumerate}
+\thm{
+$Q_8\not\cong D_8$.
+}
+\pf{
+We prove it by counting elements of order four. $D_8$ has two elements of order four ($r$ and $r^3$), but $Q_8$ has more than two ($i, j, k$ all have order four). So they cannot be isomorphic.\qed
+}
+\subsection{Group Actions}
+Frequently when presented with a group of a strange structure, it is not helpful to study the group itself. Rather, we hope to study how the group permutes other sets.
+\dfn{
+An \textbf{action} of a group $G$ on a set $X$ is a map $G\times X\to X$, written $(g,x)\mapsto g\cdot x$. This operation must satisfy
+\begin{enumerate}
+    \item[(a)] $g_1\cdot(g_2\cdot x) = (g_1g_2)\cdot x$ for all $g_1,g_2\in G$ and $x\in X$.
+    \item[(b)] $e\cdot x = x$ for all $x\in X$.
+\end{enumerate}
+}
+You can think of this as saying that each fixed $g\in G$ gives a map $\sigma_g: X\to X$ with $x\mapsto g\cdot x$.
+\thm{
+For $G$ acting on $X$, the map $G\to S_X$ with $g\mapsto \sigma_g$ is a homomorphism.
+}
+\pf{
+First we need to show that $\sigma_g: X\to X$ is bijective. We do this by considering the map $\sigma_{g^{-1}}: X\to X$ and showing that it is an inverse. We have
+\begin{align*}
+    \pqty{\sigma_{g^{-1}} \circ \sigma_{g}}(x) = \sigma_{g^{-1}}( g\cdot x) = g^{-1}\cdot (g\cdot x) = (g^{-1}g)\cdot x = e\cdot x = x
+\end{align*}
+so $\sigma_{g^{-1}} \circ \sigma_g = \id_X$, and thus $\sigma_g$ is bijective. 
+
+Now we must show $g\mapsto \sigma_g$ is a homomorphism. Let $x\in X$. Then,
+\begin{align*}
+    \sigma_{g_1g_2}(x) = (g_1g_2)\cdot x
+\end{align*}
+and
+\begin{align*}
+    (\sigma_{g_1}\circ \sigma_{g_2})(x) = g_1\cdot(g_2\cdot x) = (g_1g_2)\cdot x
+\end{align*}
+so $\sigma_{g_1g_2} = \sigma_{g_1}\circ \sigma_{g_2}$, as desired.\qed
+% \[ \sigma_{g_1g_2} = \sigma_{g_1}\circ \sigma_{g_2} \]
+}
+\exs{ Consider the following group actions.
+\begin{enumerate}
+    \item[(a)] Consider $S_n$ acting on $\{1, \dots, n\}$. The natural action is the one that takes $(\sigma, i) \mapsto \sigma(i)$ for all $\sigma\in S_n$ and $i\in \{1,\dots, n\}$.
+    \item[(b)] Consider $D_{2n}$ acting on the set of vertices of an $n$-gon $X = \{1, \dots, n\}$. Given $\alpha\in D_{2n}$ and $i\in \{1, \dots, n\}$. The natural action is $(\alpha,i) \mapsto \alpha(i)$; it sends $i$ to the location $i$ goes under $\alpha$.
+    \item[(c)] Consider a group $G$ acting on itself. One action we can consider is $g\cdot x \mapsto gx$. This is called the ``left-multiplication action." By Theorem 16, this gives a homomorphism $G\to S_G$. 
+
+    I claim this is injective. Let $g_1, g_2\in G$. Assume $\sigma_{g_1} = \sigma_{g_2}$. Then, $\sigma_{g_1}(e) = \sigma_{g_2}(e)$. So $g_1=g_2$.
+\end{enumerate}
+}
+\thm{
+If $G$ is finite, there is an injective homomorphism $G\to S_{|G|}$.
+}
+\section{Subgroups}
+\subsection{Basic Notions}
+\dfn{
+Let $G$ be a group. $H\subseteq G$ is a \textbf{subgroup}, denoted $H\le G$, if $H$ is nonempty and is closed under multiplication and inversion.
+}
+\thm{
+Let $(G, *)$ be a group and let $H\le G$. Then $(H, *)$ is a group.
+}
+\pf{
+Omitted.
+}
+\exs{
+Subgroups can be thought of as an analogue to subspaces. Some examples follow.
+\begin{enumerate}
+    \item[(a)] $\Z\le \Q$ under addition.
+    \item[(b)] For every group $G$, we have $G\le G$ and $\{e\} \le G$.
+    \item[(c)] $\{1, r, \dots, r^{n-1}\}\le D_{2n}$ (set of all rotations). Notably, $\{1, r, \dots, r^{n-1}\}$ is abelian, even though $D_{2n}$ is not. 
+\end{enumerate}
+}
+\thm{
+A nonempty set $H\subseteq G$ is a subgroup if and only if $xy^{-1}\in H$ for all $x,y\in H$.
+}
+\pf{
+If $H$ is a subgroup, it is also a group. So it has inverses and closure under multiplication.
+
+Conversely, suppose $xy^{-1}\in H$ for all $x,y\in H$. Let $x\in H$. Then, $xx^{-1} = e\in H$. So $H$ has an identity. Then, we have $ex^{-1}\in H \implies x^{-1}\in H$. So $H$ is closed under inversion. Now, for any $x,y\in H$, $y^{-1}\in H$ as we just established. Then $x(y^{-1})^{-1} = xy \in H$. So $H$ is closed under multiplication. So $H\le G$.\qed
+}
+\thm{
+A nonempty finite subset $H\subseteq G$ is a subgroup if and only if $xy\in H$ for all $x,y\in H$.
+}
+\pf{
+If $H$ is a subgroup, it is a group. So it has closure under multiplication.
+
+Conversely, suppose $xy\in H$ for all $x,y\in H$. Let $x\in H$. There are only finitely many distinct elements in $x, x^2, x^3, \cdots$. So $\exists a,b\in \N$ with $x^a=x^b$ and $b>a$. Then let $n\equiv b-a > 0$. We have $x^n x^a = x^b$ by the rules of exponents. We also have $x^b=x^a$ so $x^nx^a = x^a$. So $x^n=e$. Then $x^{n-1} = x^{-1} \in H$. So $x^{-1}\in H$. Thus we have an identity element as well as closure under multiplication and inversion. So $H$ is a group, and hence $H\le G$.
+}
+\subsection{Centralizers and Normalizers, Stabilizers and Kernels}
+\dfn{
+Let $A\subseteq G$ be nonempty. Define the \textbf{centralizer} of $A$ in $G$ as $C_G(A) = \{g\in G \;| \;gag^{-1}=a \; \forall a\in A\}$. This can be thought of as the set of all elements in $A$ that commute with everything in $G$.
+}
+\thm{
+For any $A\subseteq G$, $C_G(A) \le G$.
+}
+\pf{
+$C_G(A)$ is nonempty since it always contains $e$.
+
+Let $g_1,g_2\in C_G(A)$. Then, let $a\in A$. Note that $a = g_2ag_2^{-1}$ by assumption. So,
+\begin{align*}
+    (g_1g_2^{-1})a(g_1g_2^{-1})^{-1} &= (g_1g_2^{-1})a(g_2g_1^{-1}) \\
+    &= (g_1g_2^{-1})(g_2ag_2^{-1})(g_2g_1^{-1}) \\
+    &= g_1(g_2^{-1}g_2)a(g_2^{-1}g_2)g_1^{-1} \\
+    &= g_1ag_1^{-1} = a
+\end{align*}
+so $g_1g_2^{-1}\in C_G(A)$. Thus $C_G(A)\le G$.\qed
+}
+\dfn{
+Define the \textbf{center} of $G$ as the set $Z(G)\equiv C_G(G)$. That is,
+\[ Z(G) = \{g_1\in G \; | \; g_1g_2 = g_2g_1 \; \forall g_2\in G\} \]
+}
+\thm{
+$Z(G)\le G$.
+}
+\pf{
+Special case of the previous theorem.\qed
+}
+
+\subsubsection*{Stabilizers and Kernels of Group Actions}
+\dfn{
+Let $G$ be a group acting on a nonempty set $X$ and let $x\in X$. We define the \textbf{stabilizer} of $x$ in $G$ as
+\[ G_x = \{g\in G \; | \; g\cdot x = x\} \]
+}
+\thm{
+Let $G$ be a group and let $X$ be a nonempty set. Then $G_x\le G$.
+}
+\pf{
+First, $G_x$ is nonempty since $e\in G_x$; $e\cdot x = x$.
+
+Now, suppose $g_1,g_2\in G_x$. Then, note that $x = g_2\cdot x$ so $x=g_2\cdot x$. Then,
+\begin{align*}
+    (g_1g_2^{-1})\cdot x &= (g_1g_2^{-1})\cdot(g_2 x) \\
+    &= g_1 \cdot ((g_2^{-1}g_2) \cdot x) \\
+    &= g_1 \cdot (e\cdot x) = g_1\cdot x = x
+\end{align*}
+so $g_1g_2^{-1}\in G_x$.\qed
+}
+\dfn{
+Let $G$ be a group acting on a set $X$. We define the \textbf{kernel} of the action as
+\[ \{g\in G\; |\; gx = x \; \forall x\in X\} \]
+}
+\thm{
+Let $G$ be a group acting on a set $X$. Then, 
+\[ \{g\in G\; |\; gx = x \; \forall x\in X\} = \bigcap_{x\in X}G_x\]
+}
+\ex{
+Let $G$ be a group acting on $\mcl P(G)$ by conjugation. That is,
+\[ g\cdot A = gAg^{-1}\]
+Then, $N_G(A) = G_A$.
+}
+\subsection{Cyclic Groups}
+\dfn{
+Let $G$ be a group, and fix some $x\in G$. Define the \textbf{cyclic subgroup} generated by $x$ as
+\[ \langle x\rangle = \{x^k \; | \; k\in \Z\} \subseteq G\]
+We call $x$ the \textbf{generator} of $\langle x\rangle$.
+}
+\thm{
+For any $x\in G$, $\langle x\rangle \le G$. 
+}
+\pf{
+$\langle x\rangle$ is clearly nonempty.
+
+Let $y,z\in \langle x\rangle$. So pick $n,m\in \Z$ with $y = x^n$ and $z=x^m$. Since $-m\in \Z$, $z^{-1} = x^{-m}\in \langle x\rangle$. Since $n-m\in \Z$, 
+\[ yz^{-1}= x^nx^{-m} = x^{n-m} \in \langle x\rangle \]
+So $\langle x\rangle \le G$.\qed
+}
+\dfn{
+A group $H$ is \textbf{cyclic} if $\exists x\in H$ with $H = \langle x\rangle$.
+}
+\thm{
+Every cyclic group is abelian.
+}
+\pf{
+Let $y,z\in H$. Pick $n,m\in \Z$ with $y=x^n$ and $z=x^m$. So
+\[ yz = x^nx^m = x^{n+m} = x^{m+n} = x^mx^n = zy\]
+as desired.\qed
+}
+\exs{
+Consider the following examples.
+\begin{enumerate}
+    \item[(a)] Consider the group $D_{2n}$ and the subgroup $H = \{1, r, \cdots, r^{n-1}\}$. Then $H = \langle r\rangle$. This gives some motivation for the name cyclic group, as the powers of $r$ ``cycle" around, wrapping back to $e$ with the $n$th power. 
+
+    To write any $r^t$, we can use the division algorithm to produce $d,k\in \Z$ satisfying $k = dn+k$ with $0\le k < n$. Then,
+    \[ r^t = r^{dn+k} = (r^n)^d r^k = e^dr^k = r^k\]    
+    The generators of a cyclic group are typically not unique. We can also write $H = \langle r^{n-1}\rangle $.
+    \item[(b)] Consider the group $(\Z, +)$. We can write $(\Z, +) = \langle 1 \rangle$, since every $k\in \Z$ can be written as $k = k\times 1$. We also have $(\Z, +) = \langle -1\rangle$.
+\end{enumerate}
+}
+\thm{
+Let $H = \langle x\rangle$. Then $|H| = |x|$. 
+}
+\pf{
+First suppose $|x|=n<\infty$. I claim the elements $e, x, \cdots, x^{n-1}$ are all distinct. To see this, suppose otherwise. So $\exists a,b\in \Z$ with $b>a$ and $x^a=x^b$. So $0<b-a<n$ and $x^{b-a} = x^bx^{-a} = e$, a contradiction. Then, $H$ has at least $n$ elements. But these must be every element since any $m \in \Z$ can be written as $m = pn + q$ for some $p,q\in \Z$ with $0 \le q < n$. Then,
+\[ x^m = x^{pn+q} = x^{pn}x^q = e^px^q = x^q \in \{e, x, \cdots, x^{n-1}\}\]
+Now suppose $|x|=\infty$. So the powers, $e, x, x^2, \cdots$ are all distinct (otherwise, we could take $a,b\in \Z$ with $a<b$ but $x^a=x^b$, giving $x^{b-a} = e$). So $|H| =\infty$.\qed
+}
+\thm{
+Let $G$ be a group and let $x\in G$. Let $m,n\in\Z$. Then, if $x^m=e$ and $x^n=e$, then $x^d=e$ where $d=(m,n)$.
+
+Moreover, if $x^m=e$ then $|x|$ divides $m$.
+}
+\pf{
+By the Euclidean algorithm, pick $a,b\in \Z$ with $d = am+bn$. Then,
+\[ x^d = x^{am+bn} = (x^m)^a(x^n)^b = e^ae^b=e\]
+Now, suppose $x^m=e$. We also have $x^{|x|}=e$. So $x^{(m, |x|)}=e$ by the first part. Since $0 < (m, |x|) \le |x|$ and $|x|$ is the \textit{least} nonzero power that gives $e$, $(m, |x|)=|x|$. In particular, $|x|$ divides $m$. \qed
+}
+\thm{
+Let $\langle x\rangle$ and $\langle y\rangle$ have the same size. Then $\langle x\rangle \cong \langle y\rangle$ under the isomorphisms:
+\begin{enumerate}
+    \item[(i)] $\phi: \langle x\rangle \to \langle y\rangle$ with $x^k\mapsto y^k$ if $\langle x\rangle$ is finite.
+    \item[(ii)] $\phi: \Z \to \langle x\rangle $ with $k\mapsto x^k$ (and the same for $\langle y\rangle$)
+\end{enumerate}
+}
+\pf{
+Suppose $|\langle x\rangle| = |\langle y\rangle|= n$. First, we show $\phi$ is well-defined. Let $a\in \langle x\rangle$ with $a=x^k$ and $a=x^{k'}$. Then $x^{k-k'}=e$. So $n$ divides $k-k'$. That is, $k-k' = dn$ for some $d\in \Z$. So $k = dn+k'$. Then,
+\[ y^{k} = y^{dn+k'} = y^{dn}y^{k'} = y^{k'}\]
+so $\phi(x^k) = \phi(x^{k'})$ and $\phi$ is well-defined.
+}
+\end{document}
